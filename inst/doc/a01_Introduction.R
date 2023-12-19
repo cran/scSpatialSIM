@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -26,14 +26,14 @@ plot(sim_object, what = "Patterns", ncol = 1, nrow = 1, which = 1)#print only fi
 sim_object = GenerateTissue(sim_object, density_heatmap = T, step_size = 0.1, cores = 1)
 summary(sim_object)
 
-## ---- fig.height = 10, fig.width = 9, eval = T--------------------------------
+## ----fig.height = 10, fig.width = 9, eval = T---------------------------------
 PlotSimulation(sim_object, which = 1:4, ncol = 2, nrow = 2, what = "tissue heatmap")
 
-## ---- fig.height = 10, fig.width = 9------------------------------------------
+## ----fig.height = 10, fig.width = 9-------------------------------------------
 sim_object = GenerateHoles(sim_object, density_heatmap = T, step_size = 0.1, cores = 1)
 summary(sim_object)
 
-## ---- fig.height = 10, fig.width = 9, eval = T--------------------------------
+## ----fig.height = 10, fig.width = 9, eval = T---------------------------------
 PlotSimulation(sim_object, which = 1:8, ncol = 2, nrow = 2, what = "hole heatmap")
 
 ## -----------------------------------------------------------------------------
@@ -43,7 +43,7 @@ sim_object = GenerateCellPositivity(sim_object, k = 4,
                                     shift = 1)
 summary(sim_object)
 
-## ---- fig.height=6, fig.width=10----------------------------------------------
+## ----fig.height=6, fig.width=10-----------------------------------------------
 PlotSimulation(sim_object, which = 1, what = "whole core")
 
 ## -----------------------------------------------------------------------------
@@ -56,7 +56,7 @@ bivariate_sim = CreateSimulationObject(sims = 5, cell_types = 2) %>%
   #make tissues
   GenerateTissue(density_heatmap = T, step_size = 0.1, cores = 1)
 
-## ---- fig.height=6, fig.width=10----------------------------------------------
+## ----fig.height=6, fig.width=10-----------------------------------------------
 bivariate_sim_tmp  = GenerateCellPositivity(bivariate_sim, k = 4,
                                     sdmin = 3, sdmax = 5,
                                     density_heatmap = T, step_size = 0.1, cores = 1, probs = c(0.0, 0.1),
@@ -64,7 +64,7 @@ bivariate_sim_tmp  = GenerateCellPositivity(bivariate_sim, k = 4,
 
 PlotSimulation(bivariate_sim_tmp, which = 1, what = "whole core")
 
-## ---- fig.height=6, fig.width=10----------------------------------------------
+## ----fig.height=6, fig.width=10-----------------------------------------------
 bivariate_sim_tmp  = GenerateCellPositivity(bivariate_sim, k = 4,
                                     sdmin = 3, sdmax = 5,
                                     density_heatmap = T, step_size = 0.1, cores = 1, probs = c(0.0, 0.1),

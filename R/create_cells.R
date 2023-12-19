@@ -20,6 +20,7 @@
 #' @param random whether or not to randomly generate kernels for cells 2 or more, uf TRUE, shift is not used
 #' @param overwrite boolean whether to overwrite existing cell kernels and assignments if present
 #' @param use_window boolean whether to use the simulation window to set x and y limits
+#' @param no_kernel boolean whether to create kernels or to randomly assign points positive based on `probs`
 #'
 #' @return Returns the original \code{scSpatialSIM} object with additional generated data added to each cell object.
 #'
@@ -36,9 +37,13 @@ GenerateCellPositivity = function(sim_object, k = NA,
                           Force = FALSE,
                           density_heatmap = FALSE, step_size = 1, cores = 1,
                           shift = 0, random = FALSE, overwrite = FALSE,
-                          use_window = FALSE){
+                          use_window = FALSE, no_kernel = FALSE){
   if(!methods::is(sim_object, "SpatSimObj")) stop("`sim_object` must be of class 'SpatSimObj'")
   if(any(is.null(c(k, xmin, xmax, ymin, ymax, sdmin, sdmax)))) stop("Cannot have `NULL` parameters")
+  if(no_kernel){
+    message("random cell assignments without kernels")
+    density_heatmap = FALSE
+  }
 
   if(!is.empty(sim_object@Cells[[1]], "Simulated Kernels") & overwrite == FALSE) stop("Already have cell kernels and `overwrite == FALSE`")
 
@@ -115,11 +120,11 @@ GenerateCellPositivity = function(sim_object, k = NA,
       message("x and y range inside window boundary")
     }
     #produce kernel parameter list for k clusters in each simulated pattern
-    if(cell == 1 | random == TRUE){
+    if((cell == 1 | random) & !no_kernel){
       cl@`Simulated Kernels` = lapply(seq(sim_object@Sims), function(hld){
         do.call(gaussian_kernel, utils::head(params, -1))
       })
-    } else {
+    } else if(!no_kernel){
       #shift kernel from initial if wanted otherwise random make new ones?
       if(shift == 0){
         cl@`Simulated Kernels` = sim_object@Cells[[1]]@`Simulated Kernels`
@@ -164,21 +169,27 @@ GenerateCellPositivity = function(sim_object, k = NA,
 
     message(paste0("Computing probability for Cell ", cell))
     sim_object@`Spatial Files` = pbmcapply::pbmclapply(seq(sim_object@`Spatial Files`), function(spat_num){
-      vec = CalculateGrid(sim_object@`Spatial Files`[[spat_num]],
-                         cl@`Simulated Kernels`[[spat_num]], cores = cores)
-      #if the cell is other than the first, adjust it based on first cell and correlation
-      # if(cell != 1){
-      #   if(correlation == 0){
-      #     vec = stats::runif(length(vec), min = 0, max = 1)
-      #   } else if(correlation < 0){
-      #     vec = vec * correlation + 1
-      #   } else {
-      #     vec = vec * correlation
-      #   }
-      # }
-      #make table with probabilities and positive/negative
-      df = data.frame(col1 = scale_probs(vec * 0.9, params$probs))
-      df$col2 = ifelse(stats::rbinom(nrow(df), size = 1, prob = df$col1) == 1, "Positive", "Negative")
+      #if no_kernel if FALSE, use kernel
+      if(!no_kernel){
+        vec = CalculateGrid(sim_object@`Spatial Files`[[spat_num]],
+                            cl@`Simulated Kernels`[[spat_num]], cores = cores)
+        #if the cell is other than the first, adjust it based on first cell and correlation
+        # if(cell != 1){
+        #   if(correlation == 0){
+        #     vec = stats::runif(length(vec), min = 0, max = 1)
+        #   } else if(correlation < 0){
+        #     vec = vec * correlation + 1
+        #   } else {
+        #     vec = vec * correlation
+        #   }
+        # }
+        #make table with probabilities and positive/negative
+        df = data.frame(col1 = scale_probs(vec * 0.9, params$probs))
+        df$col2 = ifelse(stats::rbinom(nrow(df), size = 1, prob = df$col1) == 1, "Positive", "Negative")
+      } else {
+        df = data.frame(col1 = rep(params$probs[2], nrow(sim_object@`Spatial Files`[[spat_num]])))
+        df$col2 = ifelse(stats::rbinom(nrow(df), size = 1, prob = df$col1) == 1, "Positive", "Negative")
+      }
 
       names(df) = c(paste("Cell", cell, "Probability"), paste("Cell", cell, "Assignment"))
 

@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
 ## -----------------------------------------------------------------------------
 library(scSpatialSIM)
 
-## ---- creating_spatial_object-------------------------------------------------
+## ----creating_spatial_object--------------------------------------------------
 #set seed
 set.seed(333)
 #create the new object
