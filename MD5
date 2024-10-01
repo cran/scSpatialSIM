@@ -1,4 +1,4 @@
-27ff07060d8a0cd1cdd0eecd6ea2f450 *DESCRIPTION
+339e187664826bbd33164564762af985 *DESCRIPTION
 8d6a94c62806571ede4f08bbdaee8ae9 *LICENSE
 a53fe80d2825a67fb9053e5a6311be93 *NAMESPACE
 c95888d6f02915592353bc7a4a3f3d56 *R/calculate_density.R
@@ -8,7 +8,7 @@ f73f0d9ce504184b2f188830bef11298 *R/cell_distributions.R
 c76a7c4b98efb341e55f8111cdcf9965 *R/create_simObject.R
 a2c926eef49f920382c91b5142337506 *R/create_summary.R
 620b5b67d3e23c0de2251e1537766722 *R/create_tissue.R
-5b8f6b625a6b27cd7a46a0beb8ae8ceb *R/creating_spatial_processes.R
+a16fe89cb3f88af1df7dd4038b6ee338 *R/creating_spatial_processes.R
 f9882004e552297becb61f347bf37f31 *R/data.R
 308682653012fd84c39c85db5a5080f6 *R/get_parameters.R
 51eaefcc4250660d51b452dd9ecec282 *R/get_spatial_list.R
@@ -19,15 +19,15 @@ c40000332cc86674711646fafff925b8 *R/globals.R
 2e1c5223880c81366391178521e3fc89 *R/utils-helpers.R
 7b3a1f8214e1fce8d8e935d7820622e5 *R/utils-pipe.R
 283ca90f2bd7b575a9abe0d1761abcf0 *R/zzz.R
-af5c88e62180b1ba6a36cb614199131b *README.md
-12ba41c10cb00677cc238adae898a91d *build/vignette.rds
+416c4e7b5d5fd3a347cdc46100fc9495 *README.md
+32c3411bead9906af9d159282c7580ee *build/vignette.rds
 0b00a791dcd33988ce69bce6e02016f6 *data/wm.rda
 f135d6e96f528be519dc3f279213f062 *inst/doc/a01_Introduction.R
-7a7ca616408fe24d4659dc97ce762808 *inst/doc/a01_Introduction.Rmd
-e9fcbf672f4de47b92b1922582e2b779 *inst/doc/a01_Introduction.html
+95b41b52a943dcbcb25add63125d781c *inst/doc/a01_Introduction.Rmd
+d6629f076be56bb1ddeb53f4ef1cd7ab *inst/doc/a01_Introduction.html
 97fd8cba90197f5fa36d4fa7fda74353 *inst/doc/a02_Using_with_spatialTIME.R
 148eb07d4615917771d2061b9fd1cb6b *inst/doc/a02_Using_with_spatialTIME.Rmd
-e299071e548c9e5716cdddb0583dad72 *inst/doc/a02_Using_with_spatialTIME.html
+56a07d60ce7096eae61003ef311a65a0 *inst/doc/a02_Using_with_spatialTIME.html
 abdd2ac9b8881997105e5368341c2363 *man/CalculateDensity.Rd
 4c5e4eb86ccbcbbec71e2135f8200731 *man/CreateSimulationObject.Rd
 d690afd282de64b0f0ac3f544062768a *man/CreateSpatialList.Rd
@@ -46,5 +46,5 @@ c0c7dbf1cc752b7fb4fa2a74c367423d *man/plot.SpatSimObj.Rd
 a6b6e110d4e7cccb706a90db176fdf39 *man/wm.Rd
 075517e77ec6b362541c43d81918add8 *tests/testthat.R
 d8bbd2d97bb0587a1f8aa118b577a0d0 *tests/testthat/test-create_simObject.R
-7a7ca616408fe24d4659dc97ce762808 *vignettes/a01_Introduction.Rmd
+95b41b52a943dcbcb25add63125d781c *vignettes/a01_Introduction.Rmd
 148eb07d4615917771d2061b9fd1cb6b *vignettes/a02_Using_with_spatialTIME.Rmd
