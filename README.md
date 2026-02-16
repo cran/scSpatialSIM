@@ -1,7 +1,11 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/FridleyLab/scSpatialSIM/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FridleyLab/scSpatialSIM/actions/workflows/R-CMD-check.yaml)
+[![](https://cranlogs.r-pkg.org/badges/scSpatialSIM)](https://CRAN.R-project.org/package=scSpatialSIM)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/scSpatialSIM)](https://CRAN.R-project.org/package=scSpatialSIM)
+[![](https://www.r-pkg.org/badges/version-ago/scSpatialSIM)](https://CRAN.R-project.org/package=scSpatialSIM)
 <!-- badges: end -->
+
 
 # scSpatialSIM
 
@@ -15,7 +19,7 @@ To install `scSpatialSIM`, it is required to have `devtools` or `remotes` instal
 if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
 
-devtools::install_github("FridleyLab/mIFsim@v0.1.3.3")
+devtools::install_github("FridleyLab/mIFsim@v0.1.3.4")
 ```
 
 # Vignettes
